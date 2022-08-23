@@ -1,0 +1,95 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+}
+
+#container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    
+}
+
+#container > #projects {
+    flex: 1;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#container > #tasks {
+    flex: 2;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.project, .task {
+    color: white;
+}
+
+.project {
+    flex: 1;
+    width: 100%;
+    background-color: #41337A;
+    border-bottom: 4px solid #331E36;
+    padding-top: 15px;
+}
+
+.project_name {
+    font-size: 1.5em;
+}
+
+.project_time {
+    font-size: 2em;
+    margin-top: 7px;
+}
+
+.project_description {
+    margin-top: 7px;
+}
+
+.project:hover {
+    background-color: #331E36;
+}
+
+.task {
+    width: 100%;
+    background-color: #6EA4BF;
+    flex: 1;
+    padding-top: 15px;
+}
+
+.task_name {
+    font-size: 1.5em;
+}
+
+.task_description {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.task_time {
+    font-size: 2em;
+}
+
+#add-task {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 55px;
+    height: 55px;
+    text-align: center;
+    border-radius: 50px;
+    background-color: #331E36;
+    color: white;
+    font-size: 3em;
+}
+
+#add-task:hover {
+    background-color:#ECFEE8;
+    color: black;
+}
+
+.task:nth-child(odd) { background: #4E598C; }

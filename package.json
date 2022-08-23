@@ -1,0 +1,17 @@
+{
+  "name": "productivite",
+  "version": "1.0.0",
+  "description": "Application de productivite avec chronometre par tache",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Extradev",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^20.0.3"
+  },
+  "dependencies": {
+    "sqlite3": "^5.0.11"
+  }
+}
