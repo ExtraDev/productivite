@@ -16,6 +16,7 @@ html, body{
     height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 
 #container > #tasks {
@@ -23,6 +24,7 @@ html, body{
     height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 
 .project, .task {
@@ -98,7 +100,7 @@ html, body{
 }
 
 .task_time {
-    font-size: 2em;
+    font-size: 3em;
     margin-bottom: 5px;
 }
 

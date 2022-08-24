@@ -1,6 +1,3 @@
-const { app, BrowserWindow } = require('electron')
-const path = require('path')
-
 let selected_project_id;
 
 let projects_listener = document.getElementsByClassName("project");
@@ -49,7 +46,7 @@ cancel_task.addEventListener("click", function() {
 create_task.addEventListener("click", function() {
     createTask(task_name.value, task_description.value, selected_project_id);
     // make notification with electron
-})
+});
 
 
 // Gestion des chronomètres pour les taches
