@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="style.css">
     <title>Be productive!</title>
 </head>
@@ -13,6 +15,26 @@
         <div id="projects"></div>
         <div id="tasks"></div>
         <div id="add-task">+</div>
+    </div>
+
+    <!-- project form -->
+    <!-- task form -->
+    <div id="task_form">
+        <h1>Ajouter une tache</h1>
+        <form>
+            <div class="form_group">
+                <label for="task_name">Nom de la tache</label>
+                <input type="text" name="task_name" id="task_name">
+            </div>
+            <div class="form_group">
+                <label for="task_description">Description</label>
+                <textarea  name="task_description" id="task_description" cols="30" rows="10"></textarea>
+            </div>
+            <div class="form_group form_control">
+                <button id="create_task">Ajouter</button>
+                <button id="cancel_task">Annuler</button>
+            </div>
+        </form>
     </div>
 
     <script src="./database.js"></script>

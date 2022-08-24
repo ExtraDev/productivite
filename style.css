@@ -31,10 +31,14 @@ html, body{
 
 .project {
     flex: 1;
-    width: 100%;
+    width: 90%;
+    margin: auto;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 15px;
+
     background-color: #41337A;
-    border-bottom: 4px solid #331E36;
-    padding-top: 15px;
+    border-bottom: 7px solid #331E36;
 }
 
 .project_name {
@@ -52,13 +56,36 @@ html, body{
 
 .project:hover {
     background-color: #331E36;
+    cursor: pointer;
 }
 
 .task {
-    width: 100%;
     background-color: #6EA4BF;
-    flex: 1;
-    padding-top: 15px;
+    width: 95%;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 15px;
+    height: auto;
+}
+
+.chrono {
+    text-align: right;
+}
+
+.chrono button {
+    font-size: 2em;
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #331E36;
+    color: white;
+    margin-right: 5px;
+    border: 3px solid #331E36;
+}
+
+.chrono button:hover {
+    cursor: pointer;
+    border: 3px solid white;
 }
 
 .task_name {
@@ -72,6 +99,7 @@ html, body{
 
 .task_time {
     font-size: 2em;
+    margin-bottom: 5px;
 }
 
 #add-task {
@@ -93,3 +121,50 @@ html, body{
 }
 
 .task:nth-child(odd) { background: #4E598C; }
+
+/* --------------- TASK FORM --------------- */
+#task_form {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+}
+
+#task_form {
+    text-align: center;
+}
+
+#task_form form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    max-width: 750px;
+    margin: auto;
+}
+
+form .form_group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+form .form_group input,label, textarea{
+    font-size: 1.5em;
+    padding: 5px;
+}
+
+form .form_control{
+    flex-direction: row;
+}
+
+form .form_control button {
+    flex: 1;
+    margin: 5px;
+    padding: 15px;
+    font-size: 1.5em;
+}

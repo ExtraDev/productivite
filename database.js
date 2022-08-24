@@ -60,19 +60,38 @@ function displayTasks(id_project) {
         task_description.classList += "task_description";
         task_description.innerHTML = data.description;
 
+        let task_chrono = document.createElement("div");
+        task_chrono.classList += "chrono";
+        task_chrono.classList += " "+data.id_task;
+
         let task_time = document.createElement("div");
         task_time.classList += "task_time";
+        task_time.classList += " "+data.id_task;
         task_time.innerHTML = data.time;
+
+        let btn_start = document.createElement("button");
+        btn_start.innerHTML = "Start / Stop";
+        btn_start.classList += "start_stop";
+        btn_start.classList += " "+data.id_task;
+        let btn_save = document.createElement("button");
+        btn_save.innerHTML = "Save";
+        btn_save.classList += "save";
+        btn_save.classList += " "+data.id_task;
 
         task.appendChild(task_name);
         task.appendChild(task_description);
-        task.appendChild(task_time);
+
+        task_chrono.appendChild(task_time);
+        task_chrono.appendChild(btn_start);
+        task_chrono.appendChild(btn_save);
+
+        task.appendChild(task_chrono);
         
         tasks.appendChild(task);
     })
 }
 
-function addTask(name, description, id_project) {
+function createTask(name, description, id_project) {
     return db.run("INSERT INTO tasks(name, description, id_project) VALUES(?,?,?)",[name, description, id_project])
 }
 
@@ -81,6 +100,10 @@ function getProjects() {
         if (err) { throw err }
         return data;
     })
+}
+
+function updateTimeTask(id_task, time) {
+    return db.run("UPDATE tasks SET time = ? WHERE id_task = ?", [time, id_task]);
 }
 
 displayProjects();
