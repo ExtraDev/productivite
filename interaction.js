@@ -30,6 +30,8 @@ async function select_projet() {
 
     updateStartStropListener();
     updateSaveListener();
+
+    add_task.style.display = "block";
 }
 
 // Open tab to create a task
@@ -50,6 +52,12 @@ cancel_task.addEventListener("click", function() {
 
 create_task.addEventListener("click", async function() {
     await createTask(task_name.value, task_description.value, selected_project_id);
+
+    task_name.value = "";
+    task_description.value = "";
+    task_form.style.display = "none";
+
+    await displayTasks(selected_project_id);
     // make notification with electron
 });
 

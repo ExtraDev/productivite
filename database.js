@@ -98,6 +98,7 @@ function displayTasks(id_project) {
 function createTask(name, description, id_project) {
     return new Promise(resolve => {
         db.run("INSERT INTO tasks(name, description, id_project) VALUES(?,?,?)",[name, description, id_project])
+        resolve("Task added");
     });
 }
 
@@ -113,4 +114,3 @@ function updateTimeTask(id_task, time) {
 }
 
 displayProjects();
-displayTasks(1);

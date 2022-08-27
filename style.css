@@ -115,11 +115,13 @@ html, body{
     background-color: #331E36;
     color: white;
     font-size: 3em;
+    display: none;
 }
 
 #add-task:hover {
     background-color:#ECFEE8;
     color: black;
+    cursor: pointer;
 }
 
 .task:nth-child(odd) { background: #4E598C; }
