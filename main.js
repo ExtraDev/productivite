@@ -25,14 +25,12 @@ function showNotification () {
   new Notification({ title: NOTIFICATION_TITLE, body: NOTIFICATION_BODY }).show()
 }
 
-// app.whenReady().then(createWindow).then(showNotification)
-
 app.whenReady().then(() => {
     createWindow()
 
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) {
-            createWindow()
+            createWindow();
         }
     })
 })
