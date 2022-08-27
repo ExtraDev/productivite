@@ -15,16 +15,21 @@ window.onload = () => {
     })
 }
 
-// add listener on class elements
+// add listener on projects
 for(var i = 0; i < projects_listener.length; i++) {
     projects_listener[i].addEventListener("click", select_projet, false);
 }
 
-function select_projet() {
+// Select project, update view and update eventslisteners
+async function select_projet() {
     tasks.innerHTML = "";
     selected_project_id = this.getAttribute("id");
-    displayTasks(this.getAttribute("id"));
-    select_projet = this.getAttribute("id");
+
+    await displayTasks(selected_project_id);
+    select_projet = selected_project_id
+
+    updateStartStropListener();
+    updateSaveListener();
 }
 
 // Open tab to create a task
@@ -43,8 +48,8 @@ cancel_task.addEventListener("click", function() {
     task_form.style.display = "none";
 })
 
-create_task.addEventListener("click", function() {
-    createTask(task_name.value, task_description.value, selected_project_id);
+create_task.addEventListener("click", async function() {
+    await createTask(task_name.value, task_description.value, selected_project_id);
     // make notification with electron
 });
 
@@ -52,12 +57,15 @@ create_task.addEventListener("click", function() {
 // Gestion des chronomètres pour les taches
 function manage_timer() {
     // get actual time of the selected task
+    let id_task = this.getAttribute("class").split(" ")[1];
     let actual_time = document.getElementsByClassName("task_time "+this.getAttribute("class").split(" ")[1])[0].innerHTML;
     let hours = parseInt(actual_time.split(":")[0]);
     let minutes = parseInt(actual_time.split(":")[1]);
     let secondes = parseInt(actual_time.split(":")[2]);
     let element = document.getElementsByClassName("task_time "+this.getAttribute("class").split(" ")[1]);
     let max = 60;
+
+    console.log("Timer start for project "+ selected_project_id +" task "+id_task);
 
     if(!started) {
         timer = setInterval(function(){
@@ -97,11 +105,6 @@ function manage_timer() {
         clearInterval(timer);
         started = false;
     }
-
-}
-
-for(let i = 0; i < start_stop_btn.length; i++) {
-    start_stop_btn[i].addEventListener("click", manage_timer, false);
 }
 
 function save_time() {
@@ -110,6 +113,31 @@ function save_time() {
     updateTimeTask(id_task, new_time);
 }
 
-for(var i = 0; i < save_btn.length; i++) {
-    save_btn[i].addEventListener("click", save_time, false);
+function updateStartStropListener() {
+    for(let i = 0; i < start_stop_btn.length; i++) {
+        start_stop_btn[i].removeEventListener("click", manage_timer, false);
+    }
+
+    start_stop_btn = document.getElementsByClassName("start_stop");
+
+    // Add lister for start_strop btn
+    for(let i = 0; i < start_stop_btn.length; i++) {
+        start_stop_btn[i].addEventListener("click", manage_timer, false);
+    }
 }
+
+function updateSaveListener() {
+    for(var i = 0; i < save_btn.length; i++) {
+        save_btn[i].removeEventListener("click", save_time, false);
+    }
+
+    save_btn = document.getElementsByClassName("save");
+
+    // Listener for save time
+    for(var i = 0; i < save_btn.length; i++) {
+        save_btn[i].addEventListener("click", save_time, false);
+    }
+}
+
+updateStartStropListener();
+updateSaveListener();
