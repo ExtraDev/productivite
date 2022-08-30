@@ -102,6 +102,13 @@ function createTask(name, description, id_project) {
     });
 }
 
+function createProject(name, description) {
+    return new Promise(resolve => {
+        db.run("INSERT INTO projects(name, description) VALUES(?,?)",[name, description])
+        resolve("Project created");
+    });
+}
+
 function getProjects() {
     db.all("SELECT * FROM projects", (err, data) => {
         if (err) { throw err }

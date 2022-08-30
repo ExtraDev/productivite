@@ -33,35 +33,7 @@ async function select_projet() {
 
     add_task.style.display = "block";
 }
-
-// Open tab to create a task
-let add_task = document.getElementById("add-task");
-let task_form = document.getElementById("task_form");
-let cancel_task = document.getElementById("cancel_task");
-let create_task = document.getElementById("create_task");
-let task_name = document.getElementById("task_name");
-let task_description = document.getElementById("task_description");
-
-add_task.addEventListener("click", function() {
-    task_form.style.display = "block";
-})
-
-cancel_task.addEventListener("click", function() {
-    task_form.style.display = "none";
-})
-
-create_task.addEventListener("click", async function() {
-    await createTask(task_name.value, task_description.value, selected_project_id);
-
-    task_name.value = "";
-    task_description.value = "";
-    task_form.style.display = "none";
-
-    await displayTasks(selected_project_id);
-    // make notification with electron
-});
-
-
+// --- --- --- --- --- --- --- --- --- --- ---
 // Gestion des chronomètres pour les taches
 function manage_timer() {
     // get actual time of the selected task
@@ -146,6 +118,59 @@ function updateSaveListener() {
         save_btn[i].addEventListener("click", save_time, false);
     }
 }
+
+// -------------------- TASK FROM ----------------------
+let add_task = document.getElementById("add-task");
+let task_form = document.getElementById("task_form");
+let cancel_task = document.getElementById("cancel_task");
+let create_task = document.getElementById("create_task");
+let task_name = document.getElementById("task_name");
+let task_description = document.getElementById("task_description");
+
+add_task.addEventListener("click", function() {
+    task_form.style.display = "block";
+})
+
+cancel_task.addEventListener("click", function() {
+    task_form.style.display = "none";
+})
+
+create_task.addEventListener("click", async function() {
+    await createTask(task_name.value, task_description.value, selected_project_id);
+
+    task_name.value = "";
+    task_description.value = "";
+    task_form.style.display = "none";
+
+    await displayTasks(selected_project_id);
+    // make notification with electron
+});
+
+// -------------------- PROJECT FROM ----------------------
+let display_project_form = document.getElementById("create-project");
+let project_form = document.getElementById("project_form");
+let create_project = document.getElementById("create_project");
+let cancel_project = document.getElementById("cancel_project");
+let project_name = document.getElementById("project_name");
+let project_description = document.getElementById("project_description");
+
+display_project_form.addEventListener("click", function() {
+    project_form.style.display = "block";
+})
+
+cancel_project.addEventListener("click", function() {
+    project_form.style.display = "none";
+})
+
+create_project.addEventListener("click", async function() {
+    await createProject(project_name.value, project_description.value);
+
+    project_name.value = "";
+    project_description.value = "";
+    project_form.style.display = "none";
+
+    displayProjects();
+});
 
 updateStartStropListener();
 updateSaveListener();

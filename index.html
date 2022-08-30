@@ -14,10 +14,29 @@
     <div id="container">
         <div id="projects"></div>
         <div id="tasks"></div>
+        <div id="create-project">+</div>
         <div id="add-task">+</div>
     </div>
 
     <!-- project form -->
+    <div id="project_form">
+        <h1>Ajouter une tache</h1>
+        <form>
+            <div class="form_group">
+                <label for="task_name">Créer un nouveau projet</label>
+                <input type="text" name="project_name" id="project_name">
+            </div>
+            <div class="form_group">
+                <label for="project_description">Description</label>
+                <textarea  name="project_description" id="project_description" cols="30" rows="10"></textarea>
+            </div>
+            <div class="form_group form_control">
+                <button id="create_project">Ajouter</button>
+                <button id="cancel_project">Annuler</button>
+            </div>
+        </form>
+    </div>
+
     <!-- task form -->
     <div id="task_form">
         <h1>Ajouter une tache</h1>

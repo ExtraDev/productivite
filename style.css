@@ -8,12 +8,14 @@ html, body{
     width: 100%;
     height: auto;
     display: flex;
-    
+    height: 90vh;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
 }
 
 #container > #projects {
     flex: 1;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
@@ -21,7 +23,7 @@ html, body{
 
 #container > #tasks {
     flex: 2;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
@@ -32,13 +34,10 @@ html, body{
 }
 
 .project {
-    flex: 1;
     width: 90%;
-    margin: auto;
+    height: auto;
     padding: 15px;
-    margin-top: 15px;
     border-radius: 15px;
-
     background-color: #41337A;
     border-bottom: 7px solid #331E36;
 }
@@ -65,7 +64,6 @@ html, body{
     background-color: #6EA4BF;
     width: 95%;
     padding: 15px;
-    margin-top: 15px;
     border-radius: 15px;
     height: auto;
 }
@@ -106,8 +104,8 @@ html, body{
 
 #add-task {
     position: absolute;
-    right: 10px;
-    bottom: 10px;
+    right: 25px;
+    bottom: 0px;
     width: 55px;
     height: 55px;
     text-align: center;
@@ -126,6 +124,41 @@ html, body{
 
 .task:nth-child(odd) { background: #4E598C; }
 
+/* --------------- PROJECT FORM --------------- */
+#project_form {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #6EA4BF;
+    color: white;
+    text-align: center;
+
+}
+
+#create-project {
+    position: absolute;
+    left: 25px;
+    bottom: 0px;
+    width: 55px;
+    height: 55px;
+    text-align: center;
+    border-radius: 50px;
+    background-color: #331E36;
+    color: white;
+    font-size: 3em;
+}
+
+#create-project:hover {
+    background-color:#ECFEE8;
+    color: black;
+    cursor: pointer;
+}
+
 /* --------------- TASK FORM --------------- */
 #task_form {
     display: none;
@@ -138,13 +171,11 @@ html, body{
     left: 0;
     background-color: #6EA4BF;
     color: white;
-}
-
-#task_form {
     text-align: center;
 }
 
-#task_form form {
+
+form {
     display: flex;
     flex-direction: column;
     width: 70%;

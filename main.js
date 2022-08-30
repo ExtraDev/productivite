@@ -15,14 +15,7 @@ function createWindow() {
 
     win.loadFile('index.html')
 
-    win.webContents.openDevTools();
-}
-
-const NOTIFICATION_TITLE = 'Basic Notification'
-const NOTIFICATION_BODY = 'Notification from the Main process'
-
-function showNotification () {
-  new Notification({ title: NOTIFICATION_TITLE, body: NOTIFICATION_BODY }).show()
+    // win.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {
