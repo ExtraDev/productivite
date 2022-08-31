@@ -3,8 +3,6 @@ const dbname = "database.db";
 
 let db = new sqlite3.Database(dbname, sqlite3.OPEN_READWRITE, err => {
     if (err) { throw err }
-
-
     console.log("Connected to database");
 })
 
@@ -17,8 +15,8 @@ let db = new sqlite3.Database(dbname, sqlite3.OPEN_READWRITE, err => {
 const projects = document.getElementById("projects");
 const tasks = document.getElementById("tasks");
 
-function displayProjects() {
-    db.each("SELECT * FROM projects", (err, data) => {
+async function displayProjects() {
+    db.each("SELECT * FROM projects ORDER BY id_project DESC", async (err, data) => {
         if (err) { throw err }
 
         let project = document.createElement("div");
@@ -30,8 +28,8 @@ function displayProjects() {
         project_name.innerHTML = data.name;
 
         let project_time = document.createElement("div");
-        project_time.classList += "project_time";
-        project_time.innerHTML = data.time;
+        project_time.classList += "project_time"; 
+        project_time.innerHTML = await getTimeForProject(data.id_project);
 
         let project_descritpion = document.createElement("div");
         project_descritpion.classList += "project_descritpion";
@@ -47,7 +45,6 @@ function displayProjects() {
 
 function displayTasks(id_project) {
     return new Promise(resolve => {
-
         db.each("SELECT * FROM tasks WHERE id_project = ? ORDER BY id_task", [id_project] ,(err, data) => {
             if (err) { throw err }
             
@@ -118,6 +115,23 @@ function getProjects() {
 
 function updateTimeTask(id_task, time) {
     return db.run("UPDATE tasks SET time = ? WHERE id_task = ?", [time, id_task]);
+}
+
+function getTimeForProject(id_project) {
+    return new Promise(resolve => {
+        let total_secondes = 0;
+
+        db.all("SELECT time FROM tasks WHERE id_project = ?", [id_project], (err, data) => {
+            for(let i = 0; i < data.length; i++) {
+                total_secondes += parseInt(data[i].time.split(":")[2]); // secondes
+                total_secondes += parseInt(data[i].time.split(":")[1])*60; // minutes
+                total_secondes += parseInt(data[i].time.split(":")[0])*3600; // hours
+            }
+
+            resolve(new Date(total_secondes * 1000).toISOString().substring(14, 19));
+        });
+
+    })
 }
 
 displayProjects();

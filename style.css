@@ -8,9 +8,7 @@ html, body{
     width: 100%;
     height: auto;
     display: flex;
-    height: 90vh;
-    padding-top: 5vh;
-    padding-bottom: 5vh;
+    height: 100vh;
 }
 
 #container > #projects {
@@ -37,7 +35,6 @@ html, body{
     width: 90%;
     height: auto;
     padding: 15px;
-    border-radius: 15px;
     background-color: #41337A;
     border-bottom: 7px solid #331E36;
 }
@@ -64,7 +61,6 @@ html, body{
     background-color: #6EA4BF;
     width: 95%;
     padding: 15px;
-    border-radius: 15px;
     height: auto;
 }
 
@@ -192,7 +188,6 @@ form .form_group {
 form .form_group input,label, textarea{
     font-size: 1.5em;
     padding: 5px;
-    border-radius: 15px;
     border: 0;
 }
 
