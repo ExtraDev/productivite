@@ -1,6 +1,6 @@
 let selected_project_id;
 
-let projects_listener = document.getElementsByClassName("project");
+let projects_listener;
 
 let start_stop_btn = document.getElementsByClassName("start_stop");
 let save_btn = document.getElementsByClassName("save");
@@ -16,12 +16,24 @@ window.onload = () => {
 }
 
 // add listener on projects
-for(var i = 0; i < projects_listener.length; i++) {
-    projects_listener[i].addEventListener("click", select_projet, false);
+async function addProjectListener() {
+    let res = await displayProjects();
+    setTimeout(function() {
+        projects_listener = document.getElementsByClassName("project");
+        
+        console.log(projects_listener);
+        
+        for(var i = 0; i < projects_listener.length; i++) {
+            projects_listener[i].addEventListener("click", select_projet, false);
+        }
+    },10)
 }
+
+addProjectListener();
 
 // Select project, update view and update eventslisteners
 async function select_projet() {
+    console.log("project clicked");
     tasks.innerHTML = "";
     selected_project_id = this.getAttribute("id");
 

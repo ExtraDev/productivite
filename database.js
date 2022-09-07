@@ -15,35 +15,38 @@ let db = new sqlite3.Database(dbname, sqlite3.OPEN_READWRITE, err => {
 const projects = document.getElementById("projects");
 const tasks = document.getElementById("tasks");
 
-async function displayProjects() {
-    db.each("SELECT * FROM projects ORDER BY id_project DESC", async (err, data) => {
-        if (err) { throw err }
+function displayProjects() {
+    return new Promise(resolve => {
+        db.each("SELECT * FROM projects ORDER BY id_project DESC", async (err, data) => {
+            if (err) { throw err }
 
-        let project = document.createElement("div");
-        project.classList += "project";
-        project.id = data.id_project;
+            let project = document.createElement("div");
+            project.classList += "project";
+            project.id = data.id_project;
 
-        let project_name = document.createElement("div");
-        project_name.classList += "project_name";
-        project_name.innerHTML = data.name;
+            let project_name = document.createElement("div");
+            project_name.classList += "project_name";
+            project_name.innerHTML = data.name;
 
-        let project_time = document.createElement("div");
-        project_time.classList += "project_time"; 
-        project_time.innerHTML = await getTimeForProject(data.id_project);
+            let project_time = document.createElement("div");
+            project_time.classList += "project_time"; 
+            project_time.innerHTML = await getTimeForProject(data.id_project);
 
-        let project_descritpion = document.createElement("div");
-        project_descritpion.classList += "project_descritpion";
-        project_descritpion.innerHTML = data.description;
+            let project_descritpion = document.createElement("div");
+            project_descritpion.classList += "project_descritpion";
+            project_descritpion.innerHTML = data.description;
 
-        project.appendChild(project_name);
-        project.appendChild(project_descritpion);
-        project.appendChild(project_time);
+            project.appendChild(project_name);
+            project.appendChild(project_descritpion);
+            project.appendChild(project_time);
 
-        projects.appendChild(project);
-    })
+            projects.appendChild(project);
+        })
+        resolve("projects displayed");
+    });
 }
 
-function displayTasks(id_project) {
+async function displayTasks(id_project) {
     return new Promise(resolve => {
         db.each("SELECT * FROM tasks WHERE id_project = ? ORDER BY id_task", [id_project] ,(err, data) => {
             if (err) { throw err }
@@ -134,4 +137,4 @@ function getTimeForProject(id_project) {
     })
 }
 
-displayProjects();
+// displayProjects();
