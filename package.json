@@ -9,7 +9,8 @@
   "author": "Extradev",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^20.0.3"
+    "electron": "^20.0.3",
+    "electron-packager": "^16.0.0"
   },
   "dependencies": {
     "sqlite3": "^5.0.11"
